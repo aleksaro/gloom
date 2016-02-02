@@ -39,7 +39,7 @@ The project and all third-party libraries can be downloaded by cloning this repo
 
 .. code-block:: bash
 
-  git clone --recursive git@github.com:senbon/gloom.git
+  git clone --recursive https://github.com/senbon/gloom.git
 
 If you have already cloned the repository and missed the ``--recursive`` flag, then the following grabs all dependencies.
 
