@@ -129,6 +129,46 @@ The shader program can be activated and deactivated as needed after you have lin
 Remember to delete the shader program when exiting, e.g. ``shader.destroy();``.
 
 
+Loading images with stb
+-----------------------
+
+The header-only library `stb`_ can be used to load images as follows:
+
+.. code-block:: cpp
+
+  #define STB_IMAGE_IMPLEMENTATION
+  #include <stb_image.h>
+
+  // ...
+
+  int width, height, channels;
+  stbi_set_flip_vertically_on_load(true);
+  unsigned char *image = stbi_load("path_to_raster_image.jpg",
+                                   &width,
+                                   &height,
+                                   &channels,
+                                   STBI_rgb);
+
+  // ... do something with the image
+
+  stbi_image_free(image);
+
+The first and second line includes the library and ensures that we are using the implementation provided by stb.
+
+The ``stbi_set_flip_vertically_on_load()`` function will, when set to ``true``, flip the image vertically, so the first pixel corresponds to the lower left corner of the image. This is useful in, for example, OpenGL when texturing.
+
+The fifth parameter of ``stbi_load()`` specifies the number of 8-bit components per pixel to use. It can be set to one of following four options:
+
+.. code-block:: cpp
+
+  STBI_grey       = 1
+  STBI_grey_alpha = 2
+  STBI_rgb        = 3
+  STBI_rgb_alpha  = 4
+
+Please have a look at the full documentation of ``stb_image.h`` at the `stb`_ GitHub page for more information.
+
+
 .. Links
 
 .. _Glitter: https://github.com/Polytonic/Glitter
