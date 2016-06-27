@@ -1,12 +1,11 @@
 // Local headers
 #include "program.hpp"
-#include "gloom.hpp"
-#include "shader.hpp"
+#include "gloom/gloom.hpp"
 
 
 void runProgram(GLFWwindow* mWindow)
 {
-    // Set GLFW callback mechanisms
+    // Set GLFW callback mechanism(s)
     glfwSetKeyCallback(mWindow, keyboardCallback);
 
     // Enable depth (Z) buffer (accept "closest" fragment)

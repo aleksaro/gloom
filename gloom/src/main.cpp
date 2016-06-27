@@ -1,5 +1,5 @@
 // Local headers
-#include "gloom.hpp"
+#include "gloom/gloom.hpp"
 #include "program.hpp"
 
 // System headers
