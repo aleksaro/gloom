@@ -117,6 +117,8 @@ namespace Gloom
                  if (ext == "comp") return glCreateShader(GL_COMPUTE_SHADER);
             else if (ext == "frag") return glCreateShader(GL_FRAGMENT_SHADER);
             else if (ext == "geom") return glCreateShader(GL_GEOMETRY_SHADER);
+            else if (ext == "tcs")  return glCreateShader(GL_TESS_CONTROL_SHADER);
+            else if (ext == "tes")  return glCreateShader(GL_TESS_EVALUATION_SHADER);
             else if (ext == "vert") return glCreateShader(GL_VERTEX_SHADER);
             else                    return false;
         }

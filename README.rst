@@ -86,87 +86,11 @@ Windows (cmake-gui)
 4. Click the generate button
 5. If your generator is an IDE such as Visual Studio, then open up the newly created .sln file and build ``ALL_BUILD``. After this you might want to set ``gloom`` as you StartUp Project.
 
+Documentation
+=============
 
-Examples
-========
-
-Shader class
-------------
-
-The class for loading shaders can be used as follows:
-
-.. code-block:: cpp
-
-  #include "shader.hpp"
-
-  // ...
-
-  Gloom::Shader shader;
-  shader.attach("path_to_vertex_shader.vert");
-  shader.attach("path_to_fragment_shader.frag");
-  shader.link();
-
-If all you are going to use are vertex and fragment shaders, then the piece of code above can be replaced by this:
-
-.. code-block:: cpp
-
-  Gloom::Shader shader;
-  shader.makeBasicShader("path_to_vertex_shader.vert",
-                         "path_to_fragment_shader.frag");
-
-The shader program can be activated and deactivated as needed after you have linked the attached shaders. Below is an example from inside the rendering loop:
-
-.. code-block:: cpp
-
-  // Activate shader program
-  shader.activate();
-
-  // Perform draw calls using, for example, glDrawArrays
-
-  // Deactivate shader program
-  shader.deactivate();
-
-Remember to delete the shader program when exiting, e.g. ``shader.destroy();``.
-
-
-Loading images with stb
------------------------
-
-The header-only library `stb`_ can be used to load images as follows:
-
-.. code-block:: cpp
-
-  #define STB_IMAGE_IMPLEMENTATION
-  #include <stb_image.h>
-
-  // ...
-
-  int width, height, channels;
-  stbi_set_flip_vertically_on_load(true);
-  unsigned char *image = stbi_load("path_to_raster_image.jpg",
-                                   &width,
-                                   &height,
-                                   &channels,
-                                   STBI_rgb);
-
-  // ... do something with the image
-
-  stbi_image_free(image);
-
-The first and second line includes the library and ensures that we are using the implementation provided by stb.
-
-The ``stbi_set_flip_vertically_on_load()`` function will, when set to ``true``, flip the image vertically, so the first pixel corresponds to the lower left corner of the image. This is useful in, for example, OpenGL when texturing.
-
-The fifth parameter of ``stbi_load()`` specifies the number of 8-bit components per pixel to use. It can be set to one of following four options:
-
-.. code-block:: cpp
-
-  STBI_grey       = 1
-  STBI_grey_alpha = 2
-  STBI_rgb        = 3
-  STBI_rgb_alpha  = 4
-
-Please have a look at the full documentation of ``stb_image.h`` at the `stb`_ GitHub page for more information.
+The full documentation can be found on the `repository wiki`_.
+Among other things, the wiki includes information on how to use the shader and camera class bundled with gloom.
 
 
 .. Links
@@ -178,3 +102,4 @@ Please have a look at the full documentation of ``stb_image.h`` at the `stb`_ Gi
 .. _glm: https://github.com/g-truc/glm
 .. _stb: https://github.com/nothings/stb
 .. _CMake: https://cmake.org/
+.. _repository wiki: https://github.com/senbon/gloom/wiki
