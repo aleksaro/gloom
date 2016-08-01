@@ -13,6 +13,8 @@ void runProgram(GLFWwindow* mWindow)
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    glEnable(GL_CULL_FACE);
+
     // Set default colour after clearing the colour buffer
     glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
 
