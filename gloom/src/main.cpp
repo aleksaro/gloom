@@ -9,6 +9,11 @@
 // Standard headers
 #include <cstdlib>
 
+// A callback which allows GLFW to report errors whenever they occur.
+static void glfwErrorCallback(int error, const char *description)
+{
+    fprintf(stderr, "GLFW returned an error:\n\t%s (%i)\n", description, error);
+}
 
 GLFWwindow* initialise()
 {
@@ -24,6 +29,8 @@ GLFWwindow* initialise()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+    glfwSetErrorCallback(glfwErrorCallback);
 
     // Set additional window options
     glfwWindowHint(GLFW_RESIZABLE, mResizable);
