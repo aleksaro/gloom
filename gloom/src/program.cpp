@@ -1,6 +1,5 @@
 // Local headers
 #include "program.hpp"
-#include "gloom/gloom.hpp"
 
 
 void runProgram(GLFWwindow* mWindow)
@@ -12,8 +11,13 @@ void runProgram(GLFWwindow* mWindow)
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    // Configure miscellaneous OpenGL settings 
+    glEnable(GL_CULL_FACE);
+
     // Set default colour after clearing the colour buffer
     glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
+
+    // Set up your scene here (create Vertex Array Objects, etc)
 
     // Rendering Loop
     while (!glfwWindowShouldClose(mWindow))
@@ -23,6 +27,8 @@ void runProgram(GLFWwindow* mWindow)
 
         // Handle other events
         glfwPollEvents();
+
+        // Draw your scene here
 
         // Flip buffers
         glfwSwapBuffers(mWindow);
