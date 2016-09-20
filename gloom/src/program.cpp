@@ -3,36 +3,36 @@
 #include "gloom/gloom.hpp"
 
 
-void runProgram(GLFWwindow* mWindow)
+void runProgram(GLFWwindow* window)
 {
     // Set GLFW callback mechanism(s)
-    glfwSetKeyCallback(mWindow, keyboardCallback);
+    glfwSetKeyCallback(window, keyboardCallback);
 
     // Enable depth (Z) buffer (accept "closest" fragment)
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    // Configure miscellaneous OpenGL settings 
+    // Configure miscellaneous OpenGL settings
     glEnable(GL_CULL_FACE);
 
     // Set default colour after clearing the colour buffer
     glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
 
-    // Set up your scene here (create Vertex Array Objects, etc)
+    // Set up your scene here (create Vertex Array Objects, etc.)
 
     // Rendering Loop
-    while (!glfwWindowShouldClose(mWindow))
+    while (!glfwWindowShouldClose(window))
     {
         // Clear colour and depth buffers
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // Draw your scene here
+
         // Handle other events
         glfwPollEvents();
 
-        // Draw your scene here
-
         // Flip buffers
-        glfwSwapBuffers(mWindow);
+        glfwSwapBuffers(window);
     }
 }
 

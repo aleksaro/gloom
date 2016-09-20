@@ -30,10 +30,11 @@ namespace Gloom
         {
             // Load GLSL Shader from source
             std::ifstream fd(filename.c_str());
-            if(fd.fail()) {
-                fprintf(stderr, 
+            if (fd.fail())
+            {
+                fprintf(stderr,
                     "Something went wrong when attaching the Shader file at \"%s\".\n"
-                    "The file may not exist or is currently inaccessible.\n", 
+                    "The file may not exist or is currently inaccessible.\n",
                     filename.c_str());
                 return;
             }

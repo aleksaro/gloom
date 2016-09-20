@@ -10,7 +10,7 @@
 #include <cstdlib>
 
 
-// A callback which allows GLFW to report errors whenever they occur.
+// A callback which allows GLFW to report errors whenever they occur
 static void glfwErrorCallback(int error, const char *description)
 {
     fprintf(stderr, "GLFW returned an error:\n\t%s (%i)\n", description, error);
@@ -30,24 +30,23 @@ GLFWwindow* initialise()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Enable the GLFW runtime error callback function defined previously.
     glfwSetErrorCallback(glfwErrorCallback);
 
     // Set additional window options
-    glfwWindowHint(GLFW_RESIZABLE, mResizable);
-    glfwWindowHint(GLFW_SAMPLES, mSamples);  // MSAA
+    glfwWindowHint(GLFW_RESIZABLE, windowResizable);
+    glfwWindowHint(GLFW_SAMPLES, windowSamples);  // MSAA
 
     // Create window using GLFW
-    GLFWwindow* mWindow = glfwCreateWindow(mWidth,
-                                           mHeight,
-                                           mTitle.c_str(),
-                                           nullptr,
-                                           nullptr);
+    GLFWwindow* window = glfwCreateWindow(windowWidth,
+                                          windowHeight,
+                                          windowTitle.c_str(),
+                                          nullptr,
+                                          nullptr);
 
     // Ensure the window is set up correctly
-    if (!mWindow)
+    if (!window)
     {
         fprintf(stderr, "Could not open GLFW window\n");
         glfwTerminate();
@@ -55,7 +54,7 @@ GLFWwindow* initialise()
     }
 
     // Let the window be the current OpenGL context and initialise glad
-    glfwMakeContextCurrent(mWindow);
+    glfwMakeContextCurrent(window);
     gladLoadGL();
 
     // Print various OpenGL information to stdout
@@ -64,17 +63,17 @@ GLFWwindow* initialise()
     printf("OpenGL\t %s\n", glGetString(GL_VERSION));
     printf("GLSL\t %s\n\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-    return mWindow;
+    return window;
 }
 
 
 int main(int argc, char* argb[])
 {
     // Initialise window using GLFW
-    GLFWwindow* mWindow = initialise();
+    GLFWwindow* window = initialise();
 
     // Run an OpenGL application using this window
-    runProgram(mWindow);
+    runProgram(window);
 
     // Terminate GLFW (no need to call glfwDestroyWindow)
     glfwTerminate();

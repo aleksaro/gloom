@@ -14,25 +14,13 @@ namespace Gloom
     class Camera
     {
     public:
-        Camera(GLfloat aspect,  // aspect = mWidth / mHeight
-               glm::vec3 position       = glm::vec3(0.0f, 0.0f, 2.0f),
-               GLfloat fov              = 45.0f,
-               GLfloat nearClip         = 0.1f,
-               GLfloat farClip          = 1000.0f,
-               GLfloat movementSpeed    = 5.0f,
-               GLfloat mouseSensitivity = 0.005f)
+        Camera(glm::vec3 position         = glm::vec3(0.0f, 0.0f, 2.0f),
+               GLfloat   movementSpeed    = 5.0f,
+               GLfloat   mouseSensitivity = 0.005f)
         {
-            cAspect           = aspect;
             cPosition         = position;
-            cFov              = fov;
-            cNearClip         = nearClip;
-            cFarClip          = farClip;
             cMovementSpeed    = movementSpeed;
             cMouseSensitivity = mouseSensitivity;
-
-            // Set up default model and projection matrices
-            matProj = glm::perspective(cFov, cAspect, cNearClip, cFarClip);
-            matModel = glm::mat4(1.0f);
 
             // Set up the initial view matrix
             updateViewMatrix();
@@ -40,28 +28,8 @@ namespace Gloom
 
         // Public member functions
 
-        /* Getter for the model, view, and projection matrices */
-        void getMVP(glm::mat4 &proj, glm::mat4 &view, glm::mat4 &model)
-        {
-            proj  = getProjectionMatrix();
-            view  = getViewMatrix();
-            model = getModelMatrix();
-        }
-
-
-        /* Getters for transformation matrices */
-        glm::mat4 getProjectionMatrix() { return matProj; }
-        glm::mat4 getViewMatrix()       { return matView; }
-        glm::mat4 getModelMatrix()      { return matModel; }
-
-
-        /* Setter for new aspect ratio */
-        void setAspect(GLfloat aspect) {
-            cAspect = aspect;
-
-            // Update perspective matrix
-            matProj = glm::perspective(cFov, cAspect, cNearClip, cFarClip);
-        }
+        /* Getter for the view matrix */
+        glm::mat4 getViewMatrix() { return matView; }
 
 
         /* Handle keyboard inputs from a callback mechanism */
@@ -222,16 +190,9 @@ namespace Gloom
         // Camera settings
         GLfloat cMovementSpeed;
         GLfloat cMouseSensitivity;
-        GLfloat cFov;
-        GLfloat cAspect;
-        GLfloat cNearClip;
-        GLfloat cFarClip;
 
-        // Transformation matrices
-        glm::mat4 matProj;
+        // View matrix
         glm::mat4 matView;
-        glm::mat4 matModel;
-
     };
 }
 

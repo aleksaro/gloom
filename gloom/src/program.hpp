@@ -10,7 +10,7 @@
 
 
 // Main OpenGL program
-void runProgram(GLFWwindow* mWindow);
+void runProgram(GLFWwindow* window);
 
 
 // GLFW callback mechanisms
@@ -28,29 +28,29 @@ inline void printGLError() {
 
         switch(errorID) {
             case GL_INVALID_ENUM:
-                errorString = "GL_INVALID_ENUM"; 
+                errorString = "GL_INVALID_ENUM";
                 break;
             case GL_INVALID_OPERATION:
-                errorString = "GL_INVALID_OPERATION"; 
+                errorString = "GL_INVALID_OPERATION";
                 break;
             case GL_INVALID_FRAMEBUFFER_OPERATION:
                 errorString = "GL_INVALID_FRAMEBUFFER_OPERATION";
                 break;
             case GL_OUT_OF_MEMORY:
-                errorString = "GL_OUT_OF_MEMORY"; 
+                errorString = "GL_OUT_OF_MEMORY";
                 break;
             case GL_STACK_UNDERFLOW:
-                errorString = "GL_STACK_UNDERFLOW"; 
+                errorString = "GL_STACK_UNDERFLOW";
                 break;
             case GL_STACK_OVERFLOW:
-                errorString = "GL_STACK_OVERFLOW"; 
+                errorString = "GL_STACK_OVERFLOW";
                 break;
             default:
-                errorString = "[Unknown error ID]"; 
+                errorString = "[Unknown error ID]";
                 break;
         }
 
-        fprintf(stderr, "An OpenGL error occurred (%i): %s.\n", 
+        fprintf(stderr, "An OpenGL error occurred (%i): %s.\n",
                 errorID, errorString.c_str());
     }
 }
