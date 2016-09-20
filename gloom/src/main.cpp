@@ -10,6 +10,13 @@
 #include <cstdlib>
 
 
+// A callback which allows GLFW to report errors whenever they occur.
+static void glfwErrorCallback(int error, const char *description)
+{
+    fprintf(stderr, "GLFW returned an error:\n\t%s (%i)\n", description, error);
+}
+
+
 GLFWwindow* initialise()
 {
     // Initialise GLFW
@@ -21,9 +28,12 @@ GLFWwindow* initialise()
 
     // Set core window options (adjust version numbers if needed)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+    // Enable the GLFW runtime error callback function defined previously.
+    glfwSetErrorCallback(glfwErrorCallback);
 
     // Set additional window options
     glfwWindowHint(GLFW_RESIZABLE, mResizable);
