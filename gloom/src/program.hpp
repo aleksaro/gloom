@@ -13,9 +13,8 @@
 void runProgram(GLFWwindow* window);
 
 
-// GLFW callback mechanisms
-void keyboardCallback(GLFWwindow* window, int key, int scancode,
-                      int action, int mods);
+// Function for handling keypresses
+void handleKeyboardInput(GLFWwindow* window);
 
 
 // Checks for whether an OpenGL error occurred. If one did,
