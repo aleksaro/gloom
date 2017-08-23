@@ -5,9 +5,6 @@
 
 void runProgram(GLFWwindow* window)
 {
-    // Set GLFW callback mechanism(s)
-    glfwSetKeyCallback(window, keyboardCallback);
-
     // Enable depth (Z) buffer (accept "closest" fragment)
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -16,7 +13,7 @@ void runProgram(GLFWwindow* window)
     glEnable(GL_CULL_FACE);
 
     // Set default colour after clearing the colour buffer
-    glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
+    glClearColor(0.3f, 0.5f, 0.8f, 1.0f);
 
     // Set up your scene here (create Vertex Array Objects, etc.)
 
@@ -30,6 +27,7 @@ void runProgram(GLFWwindow* window)
 
         // Handle other events
         glfwPollEvents();
+        handleKeyboardInput(window);
 
         // Flip buffers
         glfwSwapBuffers(window);
@@ -37,11 +35,10 @@ void runProgram(GLFWwindow* window)
 }
 
 
-void keyboardCallback(GLFWwindow* window, int key, int scancode,
-                      int action, int mods)
+void handleKeyboardInput(GLFWwindow* window)
 {
     // Use escape key for terminating the GLFW window
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
